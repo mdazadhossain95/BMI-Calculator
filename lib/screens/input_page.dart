@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reuseable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import '../components/reuseable_card.dart';
+import '../components/icon_content.dart';
+import '../constants.dart';
 import 'results_page.dart';
-import 'bottom_button.dart';
-import 'round_icon_button.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
+import '../calculator_brain.dart';
 
 enum Gender { male, female }
 
@@ -99,9 +100,9 @@ class _InputPageState extends State<InputPage> {
                       thumbColor: const Color(0xFFEB1555),
                       overlayColor: const Color(0x29EB1555),
                       thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 30.0),
+                      const RoundSliderOverlayShape(overlayRadius: 30.0),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -122,95 +123,104 @@ class _InputPageState extends State<InputPage> {
           //3rd row
           Expanded(
             child: Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //3rd Row
+              children: <Widget>[
                 Expanded(
                   child: ReuseableCard(
-                      kActiveCardColour,
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'WEIGHT',
-                            style: kLabelTextStyle,
-                          ),
-                          Text(
-                            weight.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(FontAwesomeIcons.minus, () {
-                                setState(() {
-                                  weight--;
-                                });
-                              }),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              RoundIconButton(FontAwesomeIcons.plus, () {
+                    kActiveCardColour,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(FontAwesomeIcons.minus, () {
+                              setState(() {
+                                weight--;
+                              });
+                            }),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              FontAwesomeIcons.plus,
+                                  () {
                                 setState(() {
                                   weight++;
                                 });
-                              }),
-                            ],
-                          ),
-                        ],
-                      )),
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: ReuseableCard(
-                      kActiveCardColour,
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'AGE',
-                            style: kLabelTextStyle,
-                          ),
-                          Text(
-                            age.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(FontAwesomeIcons.minus, () {
-                                setState(() {
-                                  age--;
-                                });
-                              }),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
-                              RoundIconButton(FontAwesomeIcons.plus, () {
+                    kActiveCardColour,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(FontAwesomeIcons.minus, () {
+                              setState(() {
+                                age--;
+                              });
+                            }),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              FontAwesomeIcons.plus,
+                                  () {
                                 setState(() {
                                   age++;
                                 });
-                              }),
-                            ],
-                          ),
-                        ],
-                      )),
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          BottomButton(() {
+          BottomButton('CALCULATE', () {
+            CalculatorBrain calc = CalculatorBrain(height, weight);
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ResultsPage(),
+                builder: (context) =>
+                    ResultsPage(
+                      calc.calculateBMI(),
+                      calc.getResult(),
+                      calc.getInterpretation(),
+                    ),
               ),
             );
-          }, 'CALCULATE'),
+          }),
         ],
       ),
     );
   }
 }
-
-
-
