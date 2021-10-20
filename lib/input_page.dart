@@ -5,11 +5,6 @@ import 'icon_content.dart';
 import 'constants.dart';
 import 'results_page.dart';
 
-const bottomContainerHeight = 80.0;
-const activeCardColour = Color(0xFF1D1E33);
-const inactiveCardColour = Color(0xFF111328);
-const bottomContainerColour = Color(0xFFEB1555);
-
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
@@ -20,13 +15,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender userGender = Gender.female;
+  Gender userGender = Gender.male;
   int height = 180;
   int weight = 60;
   int age = 19;
-  Color maleCardColour = activeCardColour;
-  Color femaleCardColour = inactiveCardColour;
-  Gender userGender = Gender.female;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +42,9 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     child: ReuseableCard(
-                      userGender == Gender.male ? kActiveCardColour : kInactiveCardColour,
+                      userGender == Gender.male
+                          ? kActiveCardColour
+                          : kInactiveCardColour,
                       const IconContent(FontAwesomeIcons.male, "MALE"),
                     ),
                   ),
@@ -220,18 +214,6 @@ class _InputPageState extends State<InputPage> {
               height: kBottomContainerHeight,
             ),
           )
-              kActiveCardColour,
-              Column(
-                children: const [Text('HEIGHT')],
-              ),
-            // ),
-          // ),
-          Container(
-            color: bottomContainerColour,
-            margin: const EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: bottomContainerHeight,
-          ),
         ],
       ),
     );
