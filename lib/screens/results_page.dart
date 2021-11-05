@@ -58,11 +58,14 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
-          BottomButton(
-            'RE-CALCULATE',
-            () {
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BottomButton(
+              'RE-CALCULATE',
+              () {
+                Navigator.pop(context);
+              },
+            ),
           )
         ],
       ),

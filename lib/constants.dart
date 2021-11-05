@@ -8,10 +8,10 @@ const kBottomContainerColour = Color(0xFFEB1555);
 // Color maleCardColour = kActiveCardColour;
 // Color femaleCardColour = kInactiveCardColour;
 
-const kLabelTextStyle = TextStyle(fontSize: 18.0, color: Color(0xFFFFFFFF));
+const kLabelTextStyle = TextStyle(fontSize: 16.0, color: Color(0xFFFFFFFF));
 
 const kNumberTextStyle = TextStyle(
-    fontSize: 60.0, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w900);
+    fontSize: 40.0, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w900);
 
 const kLargeButtonTextStyle = TextStyle(
   fontSize: 25.0,
